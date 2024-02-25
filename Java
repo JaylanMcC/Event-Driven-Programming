@@ -1,0 +1,43 @@
+// script.js
+// Author: Jaylan McCoy+
+
+// Variables to store the interval ID for animation
+let animationInterval;
+
+// Function to move the meme image
+function moveMeme() {
+    const memeImage = document.getElementById('memeImage');
+    // Add your logic here to move the meme image as desired
+    // Example: Move the image in a circular path
+    let angle = 0;
+    animationInterval = setInterval(() => {
+        const x = 200 * Math.cos(angle);
+        const y = 100 * Math.sin(angle);
+        memeImage.style.transform = `translate(${x}px, ${y}px)`;
+        angle += 0.1;
+    }, 50);
+}
+
+// Function to stop moving the meme image
+function stopMoving() {
+    clearInterval(animationInterval);
+    enableButton('startButton');
+    disableButton('stopButton');
+}
+
+// Function to start moving the meme image
+function startMoving() {
+    moveMeme();
+    disableButton('startButton');
+    enableButton('stopButton');
+}
+
+// Function to disable a button
+function disableButton(buttonId) {
+    document.getElementById(buttonId).disabled = true;
+}
+
+// Function to enable a button
+function enableButton(buttonId) {
+    document.getElementById(buttonId).disabled = false;
+}
